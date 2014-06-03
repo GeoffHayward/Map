@@ -45,6 +45,14 @@ HashMap.prototype = (function(){
             var value = this._map[key];
             delete this._map[key];
             return value;
+        },
+        /**
+         * Returns the number of key-value mappings in this map.
+         *
+         * @returns {int} the number of key-value mappings in this map.
+         */
+        size : function(){
+            return Object.keys(this._map).length; // Temp as ECMAScript 5
         }
 
     }
