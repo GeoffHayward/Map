@@ -33,7 +33,9 @@ HashMap.prototype = (function(){
          * @returns {HashMap} a shallow copy of this map
          */
         clone : function(){
-            return new HashMap(this);
+            var clone = new HashMap();
+            clone.putAll(JSON.parse(JSON.stringify(this._map)));
+            return clone;
         },
         /**
          * Removes the mapping for the specified key from this map if present.
@@ -53,6 +55,24 @@ HashMap.prototype = (function(){
          */
         size : function(){
             return Object.keys(this._map).length; // Temp as ECMAScript 5
+        }
+        
+        
+        // Doing ...
+        
+        /**
+         *
+         * @returns {Array}
+         */
+        keys: function(){
+            return Object.keys(this._map);
+        },
+        /**
+         * Need to check spec.
+         * @param set
+         */
+        putAll : function( set ){
+            this._map = set;
         }
 
     }
