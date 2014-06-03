@@ -1,7 +1,7 @@
 var HashMap = function(){
     this._map = {};
 };
-Hash.prototype = (function(){
+HashMap.prototype = (function(){
     return {
        /***
         * Associates the specified value with the specified key in this map. If the map previously contained a mapping
@@ -9,7 +9,7 @@ Hash.prototype = (function(){
         *
         * @param key - key with which the specified value is to be associated
         * @param value - value to be associated with the specified key
-        * @returns The previous value associated with key.
+        * @returns {Object} the previous value associated with key.
         */
         put : function(key, value){
             return this._map[key] = value;
@@ -19,13 +19,33 @@ Hash.prototype = (function(){
          * key.
          *
          * @param key - the key whose associated value is to be returned.
-         * @returns The value to which the specified key is mapped, or undefined if this map contains no mapping for the
+         * @returns {Object} the value to which the specified key is mapped, or undefined if this map contains no mapping for the
          * key.
          */
         get: function(key){
             if(this._map.hasOwnProperty(key)){
                 return this._map[key];
             }
+        },
+        /**
+         * Returns a shallow copy of this HashMap instance: the keys and values themselves are not cloned.
+         *
+         * @returns {HashMap} a shallow copy of this map
+         */
+        clone : function(){
+            return new HashMap(this);
+        },
+        /**
+         * Removes the mapping for the specified key from this map if present.
+         *
+         * @param key
+         * @returns {Object} the previous value associated with key, or undefined if there was no mapping for key.
+         */
+        remove : function(key){
+            var value = this._map[key];
+            delete this._map[key];
+            return value;
         }
+
     }
 }());
