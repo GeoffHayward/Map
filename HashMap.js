@@ -33,8 +33,10 @@ HashMap.prototype = (function(){
          * @returns {HashMap} a shallow copy of this map
          */
         clone : function(){
-            var clone = new HashMap();
-            clone.putAll(JSON.parse(JSON.stringify(this._map)));
+            var clone = new HashMap()
+            for (var item in this._map){
+                clone._map[item] = this._map[item];
+            }
             return clone;
         },
         /**
