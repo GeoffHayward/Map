@@ -1,7 +1,7 @@
-var HashMap = function(){
+var Map = function(){
     this._map = {};
 };
-HashMap.prototype = (function(){
+Map.prototype = (function(){
     return {
        /***
         * Associates the specified value with the specified key in this map. If the map previously contained a mapping
@@ -57,7 +57,7 @@ HashMap.prototype = (function(){
          */
         size : function(){
             return Object.keys(this._map).length; // Temp as ECMAScript 5
-        }
+        },
         
         
         // Doing ...
@@ -77,5 +77,5 @@ HashMap.prototype = (function(){
             this._map = set;
         }
 
-    }
+    };
 }());
