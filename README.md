@@ -7,4 +7,4 @@ The object's deviations from the Java Map are:
 
 * entitySet - missing (use values)
 * keySet - is named keys (it returns an array of unique values)
-
+* hashCode - missing
