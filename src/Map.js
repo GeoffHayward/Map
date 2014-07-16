@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2014 Geoff Hayward - http://geoffhayward.eu 
+ */
 var Map = function(){
     this._map = {};
 };
@@ -37,7 +40,6 @@ Map.prototype = (function(){
             }
             return found;
         },
-        
         
         /**
          * Compares the specified object with this map for equality. Returns 
@@ -98,7 +100,6 @@ Map.prototype = (function(){
             return Object.keys(this._map);
         },
         
-        
        /***
         * Associates the specified value with the specified key in this map. If 
         * the map previously contained a mapping for the key, the old value is 
@@ -139,6 +140,7 @@ Map.prototype = (function(){
             }
             return clone;
         },
+        
         /**
          * Removes the mapping for the specified key from this map if present.
          *
@@ -151,6 +153,7 @@ Map.prototype = (function(){
             delete this._map[key];
             return value;
         },
+        
         /**
          * Returns the number of key-value mappings in this map.
          *

@@ -183,6 +183,8 @@ describe("Map.js test suite for the Map's 'clone' method", function() {
         map1.put("key1", "value1");
         var map2 = map1.clone();
         expect(map1.equals(map2)).toBe(true);
+        map2.put("key1", "value2");
+        expect(map1.get("key1")).toBe("value1");
     });
     
 });
