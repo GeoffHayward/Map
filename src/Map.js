@@ -9,7 +9,7 @@ Map.prototype = (function(){
          * this call returns.
          */
         clear : function(){
-            // to do.
+            this._map = {};
         },
         
         /**
@@ -19,17 +19,23 @@ Map.prototype = (function(){
          * @returns {Boolean}
          */
         containsKey : function(key){
-            // to do.
+            return this._map.hasOwnProperty(key);
         },
         
         /**
-         * Returns true if this map maps one or more keys to the specified value. 
+         * Returns true if this map has one or more keys to the specified value. 
          *          
          * @param {Object} value           
          * @returns {Boolean}
          */
-        containsValue : function(value){
-            // to do.
+        containsValue : function(object){
+            var found = false;
+            for(var key in this._map){
+                if(this._map[key] === object){
+                    found = true;
+                }
+            }
+            return found;
         },
         
         
@@ -40,8 +46,21 @@ Map.prototype = (function(){
          * 
          * @returns {Boolean}
          */
-        equals : function(){
-            //to do
+        equals : function(object){
+            var equals = 2;
+            if(object instanceof Map){
+                equals--;
+                if(this.size() === object.size()) {
+                    equals--;
+                    var thisMapsKeys = this.keys();
+                    for(k in thisMapsKeys){
+                        if(!object.containsKey(thisMapsKeys[k]) || this.get(thisMapsKeys[k]) !== object.get(thisMapsKeys[k])){
+                            equals++;
+                        }
+                    }
+                }
+            }
+            return (equals === 0);
         },
         
         /***
@@ -56,25 +75,16 @@ Map.prototype = (function(){
             if(this._map.hasOwnProperty(key)){
                 return this._map[key];
             }
+            return undefined;
         },
-        
-        /**
-         * Returns the hash code value for this map. The hash code of a map is 
-         * defined [To be defined]
-         * 
-         * @returns {String}
-         */
-        hashCode : function(){
-            // to do.
-        },
-        
+                
         /**
          * Returns true if this map contains no key-value mappings.
          * 
          * @returns {Boolean}
          */
         isEmpty : function() {
-            // to do.
+            return this.size() === 0;
         },
         
         /**
@@ -106,14 +116,14 @@ Map.prototype = (function(){
          * Copies all of the mappings from the specified map to this map. The 
          * effect of this call is equivalent to that of calling put(k, v) on this 
          * map once for each mapping from key k to value v in the specified map. 
-         * The behavior of this operation is undefined if the specified map is 
-         * modified while the operation is in progress.
          * 
          * @param {Map} mappings to be stored in this Map
          */
         putAll : function(map){
-            //this._map = set;  Need to check spec.
-            // to do.
+            var keys = map.keys();
+            for(k in keys){
+                this.put(keys[k], map.get(keys[k]));
+            }
         },
         
         /**
@@ -158,7 +168,12 @@ Map.prototype = (function(){
          * @returns {undefined}
          */
         values : function(){
-            // to do.
+            var values = [];
+            var keys = this.keys();
+            for(k in keys){
+                values.push(this.get(keys[k]));
+            }
+            return values;
         } 
     };
 }());
