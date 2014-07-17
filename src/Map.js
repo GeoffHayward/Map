@@ -97,7 +97,11 @@ Map.prototype = (function(){
          * @returns {Array}
          */
         keys: function(){
-            return Object.keys(this._map);
+            var keys = [];
+            for (var key in this._map) {
+                keys.push(key);
+            }
+            return keys;
         },
         
        /***
@@ -160,7 +164,7 @@ Map.prototype = (function(){
          * @returns {int} the number of key-value mappings in this map.
          */
         size : function(){
-            return Object.keys(this._map).length; // Temp as ECMAScript 5
+            return this.keys().length;
         },
         
         /**
